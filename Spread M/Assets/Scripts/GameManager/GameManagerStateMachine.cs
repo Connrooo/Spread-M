@@ -11,6 +11,8 @@ public class GameManagerStateMachine : MonoBehaviour
     public GameManagerBaseState CurrentState { get { return currentState; } set { currentState = value; } }
 
     [Header("Global Values")]
+    public int amountOfHumans;
+    public GameObject[] humans;
     public GameObject Player;
     public MenuManager menuManager;
     public SettingsMenu settingsMenu;
@@ -50,6 +52,11 @@ public class GameManagerStateMachine : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         currentState = states.Menu();
         currentState.EnterState();
+        humans = GameObject.FindGameObjectsWithTag("Interact");
+        foreach (GameObject human in humans)
+        {
+            amountOfHumans++;
+        }
     }
     private void Update()
     {
@@ -61,6 +68,10 @@ public class GameManagerStateMachine : MonoBehaviour
         else
         {
             _CanMove = true;
+        }
+        if (amountOfHumans==0)
+        {
+            Debug.Log("Game over");
         }
     }
 }

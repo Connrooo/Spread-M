@@ -28,8 +28,4 @@ public class HumanStateFactory
     {
         return new HumanInfectedRunState(context, this);
     }
-    public HumanBaseState InfectedWalk()
-    {
-        return new HumanInfectedWalkState(context, this);
-    }
 }

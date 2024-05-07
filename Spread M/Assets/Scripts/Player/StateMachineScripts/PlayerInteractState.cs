@@ -29,19 +29,27 @@ public class PlayerInteractState : PlayerBaseState
 
     private void InteractRaycast()
     {
-        List<GameObject> toDelete = new List<GameObject>();
+        //List<GameObject> toDelete = new List<GameObject>();
+        int index = 0;
         foreach(GameObject interactable in Ctx._InteractablesInCone)
         {
             var mask = Ctx.layerMaskInteract.value;
-            if (!Physics.Linecast(Ctx._PlayerTrack.position, interactable.transform.position, mask) && Ctx.IsInteractPressed)
+            if (!Physics.Linecast(Ctx._PlayerTrack.position, interactable.transform.position, mask) && Ctx.IsInteractPressed&&index==0)
             {
-                toDelete.Add(interactable);
+                var humanScript = interactable.GetComponent<HumanStateMachine>();
+                if (humanScript._IsHuman)
+                {
+                    humanScript.HumanAnimator.SetTrigger("infected");
+                    humanScript._IsHuman = false;
+                    index++;
+                }
             }
+            
         }
-        foreach(GameObject interactable in toDelete)
-        {
-            Ctx._InteractablesInCone.Remove(interactable);
-            Object.Destroy(interactable);
-        }
+        //foreach(GameObject interactable in toDelete)
+        //{
+        //    Ctx._InteractablesInCone.Remove(interactable);
+        //    Object.Destroy(interactable);
+        //}
     }
 }

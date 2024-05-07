@@ -20,7 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
     [Header("Player Walk Variables")]
     public Vector3 moveDirection;
     public float movementSpeed = 10;
-    public float _Gravity = 200f;
+    public float _Gravity = 400f;
 
     [Header("Sprint Variables")]
     public float SprintMult = 1.5f;
@@ -126,7 +126,6 @@ public class PlayerStateMachine : MonoBehaviour
     private void OnMove(InputAction.CallbackContext ctx)
     {
         movementInput = ctx.ReadValue<Vector2>();
-        Debug.Log("Walk Pressed");
     }
 
     private void OnTurn(InputAction.CallbackContext ctx)
