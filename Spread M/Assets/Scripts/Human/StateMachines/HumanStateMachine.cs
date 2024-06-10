@@ -19,6 +19,8 @@ public class HumanStateMachine : MonoBehaviour
     public bool _IsWalking;
     public Vector3 _LastPosition;
 
+    public float _HaltedSpeed;
+
     [Header("Human State")]
     public bool _IsHuman;
     public bool _IsInfected;
@@ -55,7 +57,7 @@ public class HumanStateMachine : MonoBehaviour
         {
             humanDetectionArea.SetActive(false);
             infectedDetectionArea.SetActive(true);
-            _HumanAgent.speed = 3f;
+            _HumanAgent.speed = 3f*_HaltedSpeed;
         }
         currentState.UpdateStates();
     }

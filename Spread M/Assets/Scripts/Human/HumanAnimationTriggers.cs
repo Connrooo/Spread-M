@@ -15,14 +15,21 @@ public class HumanAnimationTriggers : MonoBehaviour
         gameManager = FindObjectOfType<GameManagerStateMachine>();
     }
 
+    public void StopSpeed()
+    {
+        parent._HaltedSpeed = 0;
+    }
+
     public void Converted()
     {
         parent._IsInfected = true;
+        parent._HaltedSpeed = 1;
         gameManager.amountOfHumans--;
     }
     public void OffCoolDown()
     {
         HumanAnimator.ResetTrigger("cooldown");
+        parent._HaltedSpeed = 1;
         parent.InfectedOnCooldown = false;
     }
 }

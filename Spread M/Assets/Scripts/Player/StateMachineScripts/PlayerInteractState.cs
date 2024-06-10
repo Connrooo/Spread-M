@@ -39,6 +39,8 @@ public class PlayerInteractState : PlayerBaseState
                 var humanScript = interactable.GetComponent<HumanStateMachine>();
                 if (humanScript._IsHuman)
                 {
+                    Ctx.cooldownSpeed = .01f;
+                    Ctx.CharacterAnimator.SetTrigger("Attack");
                     humanScript.HumanAnimator.SetTrigger("infected");
                     humanScript._IsHuman = false;
                     index++;

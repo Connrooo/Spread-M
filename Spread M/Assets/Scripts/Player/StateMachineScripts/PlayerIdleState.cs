@@ -13,6 +13,7 @@ public class PlayerIdleState : PlayerBaseState
     public override void EnterState() { }
     public override void UpdateState() 
     {
+        Ctx.CharacterAnimator.SetBool("Walking", false);
         CheckSwitchStates();
         FieldOfViewAdjust();
     }

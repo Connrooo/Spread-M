@@ -19,11 +19,15 @@ public class PlayerWalkState : PlayerBaseState
     }
     public override void UpdateState() 
     {
+        Ctx.CharacterAnimator.SetBool("Walking", true);
         CheckSwitchStates();
         LoadMovement();
         
     }
-    public override void ExitState() { }
+    public override void ExitState() 
+    {
+        Ctx.CharacterAnimator.SetBool("Walking", false);
+    }
     public override void CheckSwitchStates() 
     {
         if(Ctx.characterController.isGrounded)
@@ -48,6 +52,7 @@ public class PlayerWalkState : PlayerBaseState
     {
         if (Ctx.IsSprintPressed)
         {
+            Ctx.CharacterAnimator.SetBool("Running",true);
             if (Ctx.gameManager.gameplayCamera.m_Lens.FieldOfView < Ctx._SprintingFOV)
             {
                 Ctx.gameManager.gameplayCamera.m_Lens.FieldOfView = Ctx.gameManager.gameplayCamera.m_Lens.FieldOfView + 30 * Time.deltaTime;
@@ -60,6 +65,7 @@ public class PlayerWalkState : PlayerBaseState
         }
         else
         {
+            Ctx.CharacterAnimator.SetBool("Running", false);
             if (Ctx.gameManager.gameplayCamera.m_Lens.FieldOfView > Ctx._WalkingFOV)
             {
                 Ctx.gameManager.gameplayCamera.m_Lens.FieldOfView = Ctx.gameManager.gameplayCamera.m_Lens.FieldOfView - 25 * Time.deltaTime;
@@ -100,7 +106,18 @@ public class PlayerWalkState : PlayerBaseState
 
     private void ApplyMovement()
     {
-        Ctx.characterController.Move(Ctx.moveDirection * Ctx.movementSpeed * Ctx._Sprinting * Time.deltaTime);
+        Ctx.characterController.Move(Ctx.moveDirection * Ctx.movementSpeed * Ctx._Sprinting * Time.deltaTime * Ctx.cooldownSpeed);
+        ApplyRotation();
+    }
+
+    private void ApplyRotation()
+    {
+        Vector3 facingDirection = Ctx.moveDirection;
+        var CharacterPosition = Ctx.CharacterRotation.transform.position;
+        Vector3 LookedAtPosition = new Vector3((CharacterPosition.x + facingDirection.x), CharacterPosition.y, (CharacterPosition.z + facingDirection.z));
+        var targetRotation = Quaternion.LookRotation(LookedAtPosition - Ctx.transform.position);
+        Ctx.CharacterRotation.transform.rotation = Quaternion.Slerp(Ctx.CharacterRotation.transform.rotation, targetRotation, 4f * Time.deltaTime*Ctx.cooldownSpeed);
+        Ctx.CharacterRotation.transform.rotation = Quaternion.Euler(0, Ctx.CharacterRotation.transform.rotation.eulerAngles.y,0);
     }
 
     private void ApplySound()

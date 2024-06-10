@@ -19,7 +19,7 @@ public class HumanRunState : HumanBaseState
         Ctx._HumanAgent.ResetPath();
         Ctx._IsWalking = false;
         expandingRange = 1f;
-        Ctx._HumanAgent.speed = 10f;
+        Ctx._HumanAgent.speed = 10f * Ctx._HaltedSpeed;
     }
     public override void UpdateState() 
     {

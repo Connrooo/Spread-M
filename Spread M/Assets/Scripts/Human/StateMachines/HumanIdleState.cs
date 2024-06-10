@@ -23,7 +23,7 @@ public class HumanIdleState : HumanBaseState
     {
         if (Ctx._IsInfected&&!Ctx.InfectedOnCooldown)
         {
-            Ctx._HumanAgent.speed = 3f;
+            Ctx._HumanAgent.speed = 3f * Ctx._HaltedSpeed;
             Ctx._TrackedHuman = null;
             Ctx._FoundHuman = null;
             Ctx._IsAfraid = false;
@@ -33,7 +33,7 @@ public class HumanIdleState : HumanBaseState
         {
             if (!Ctx._IsCaught)
             {
-                Ctx._HumanAgent.speed = 5f;
+                Ctx._HumanAgent.speed = 5f * Ctx._HaltedSpeed;
                 SwitchState(Factory.Walk());
             }
         }

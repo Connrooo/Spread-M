@@ -17,13 +17,17 @@ public class PlayerStateMachine : MonoBehaviour
     public RebindUI rebindUI;
     public CharacterController characterController;
 
+    public Animator CharacterAnimator;
+    public GameObject CharacterRotation;
+
     [Header("Player Walk Variables")]
     public Vector3 moveDirection;
     public float movementSpeed = 10;
+    public float cooldownSpeed = 1;
     public float _Gravity = 400f;
 
     [Header("Sprint Variables")]
-    public float SprintMult = 1.5f;
+    public float SprintMult = 2f;
     public float _Sprinting = 1;
     public float _WalkingFOV = 40f;
     public float _SprintingFOV = 60f;
