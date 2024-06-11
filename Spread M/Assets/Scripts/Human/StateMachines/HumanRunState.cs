@@ -16,10 +16,12 @@ public class HumanRunState : HumanBaseState
 
     public override void EnterState() 
     {
+        Ctx._HumanAgent.isStopped = false;
         Ctx._HumanAgent.ResetPath();
         Ctx._IsWalking = false;
         expandingRange = 1f;
         Ctx._HumanAgent.speed = 10f * Ctx._HaltedSpeed;
+        Ctx.HumanAnimator.SetBool("Running", true);
     }
     public override void UpdateState() 
     {
@@ -32,7 +34,11 @@ public class HumanRunState : HumanBaseState
     public override void ExitState() { }
     public override void CheckSwitchStates() 
     {
-        if (!Ctx._IsAfraid)
+        if (!Ctx._IsHuman)
+        {
+            SwitchState(Factory.Idle());
+        }
+        else if (!Ctx._IsAfraid)
         {
             SwitchState(Factory.Walk());
         }

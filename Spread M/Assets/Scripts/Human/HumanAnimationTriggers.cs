@@ -17,7 +17,7 @@ public class HumanAnimationTriggers : MonoBehaviour
 
     public void StopSpeed()
     {
-        parent._HaltedSpeed = 0;
+        //parent._HaltedSpeed = 0;
     }
 
     public void Converted()
@@ -28,7 +28,7 @@ public class HumanAnimationTriggers : MonoBehaviour
     }
     public void OffCoolDown()
     {
-        HumanAnimator.ResetTrigger("cooldown");
+        HumanAnimator.ResetTrigger("Attacking");
         parent._HaltedSpeed = 1;
         parent.InfectedOnCooldown = false;
     }

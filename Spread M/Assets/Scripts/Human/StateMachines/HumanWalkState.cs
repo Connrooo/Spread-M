@@ -10,7 +10,12 @@ public class HumanWalkState : HumanBaseState
         IsRootState= true;
         InitializeSubState();
     }
-    public override void EnterState() { }
+    public override void EnterState() 
+    {
+        Ctx._HumanAgent.isStopped = false;
+        Ctx.HumanAnimator.SetBool("Running", false);
+        Ctx._HumanAgent.speed = 3f * Ctx._HaltedSpeed;
+    }
     public override void UpdateState() 
     {
         CheckSwitchStates();
@@ -24,6 +29,7 @@ public class HumanWalkState : HumanBaseState
         if (!Ctx._IsHuman&&!Ctx._IsInfected)
         {
             SwitchState(Factory.Idle());
+            Debug.Log("Switched");
         }
         else
         {

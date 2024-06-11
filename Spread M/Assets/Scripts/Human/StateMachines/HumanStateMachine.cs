@@ -19,7 +19,7 @@ public class HumanStateMachine : MonoBehaviour
     public bool _IsWalking;
     public Vector3 _LastPosition;
 
-    public float _HaltedSpeed;
+    public float _HaltedSpeed = 1f;
 
     [Header("Human State")]
     public bool _IsHuman;
@@ -53,6 +53,7 @@ public class HumanStateMachine : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Stopped: "+ _HumanAgent.isStopped);
         if (_IsInfected&&humanDetectionArea.activeSelf)
         {
             humanDetectionArea.SetActive(false);

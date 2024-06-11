@@ -12,7 +12,9 @@ public class HumanInfectedRunState : HumanBaseState
     }
     public override void EnterState() 
     {
+        Ctx._HumanAgent.isStopped = false;
         Ctx._HumanAgent.ResetPath();
+        Ctx.HumanAnimator.SetBool("Running", true);
     }
     public override void UpdateState() 
     {
@@ -62,6 +64,8 @@ public class HumanInfectedRunState : HumanBaseState
         if (Vector3.Distance(Ctx.transform.position,Ctx._TrackedHuman.transform.position) >= 10)
         {
             Ctx._IsChasing = false;
+            Ctx._TrackedHuman = Ctx._FoundHuman;
+            Ctx._FoundHuman = null;
         }
         else
         {
@@ -76,9 +80,9 @@ public class HumanInfectedRunState : HumanBaseState
             Ctx.InfectedOnCooldown = true;
             var humanScript = Ctx._TrackedHuman.GetComponent<HumanStateMachine>();
             humanScript._IsHuman = false;
-            humanScript.HumanAnimator.SetTrigger("infected");
+            humanScript.HumanAnimator.SetTrigger("Attacked");
             Ctx._TrackedHuman = null;
-            Ctx.HumanAnimator.SetTrigger("cooldown");
+            Ctx.HumanAnimator.SetTrigger("Attacking");
         }
         else
         {

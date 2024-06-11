@@ -41,9 +41,11 @@ public class PlayerInteractState : PlayerBaseState
                 {
                     Ctx.cooldownSpeed = .01f;
                     Ctx.CharacterAnimator.SetTrigger("Attack");
-                    humanScript.HumanAnimator.SetTrigger("infected");
+                    humanScript.HumanAnimator.SetTrigger("Attacked");
                     humanScript._IsHuman = false;
                     index++;
+                    Ctx.CharacterRotation.transform.LookAt(interactable.transform.position);
+                    Ctx.CharacterRotation.transform.rotation = Quaternion.Euler(0, Ctx.CharacterRotation.transform.rotation.eulerAngles.y, 0);
                 }
             }
             

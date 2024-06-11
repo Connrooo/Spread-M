@@ -635,7 +635,7 @@ MonoBehaviour:
   movementSpeed: 3
   cooldownSpeed: 1
   _Gravity: 400
-  SprintMult: 2
+  SprintMult: 3
   _Sprinting: 1
   _WalkingFOV: 40
   _SprintingFOV: 60
