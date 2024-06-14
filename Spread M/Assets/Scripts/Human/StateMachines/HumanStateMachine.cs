@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditorInternal.ReorderableList;
@@ -9,7 +10,13 @@ public class HumanStateMachine : MonoBehaviour
     public NavMeshAgent _HumanAgent;
 
     [Header("Global Values")]
-    public Animator HumanAnimator;
+    public Animator[] HumanAnimators;
+
+    public Material[] _HumanMaterial;
+    public List<Material> ClonedMaterials;
+
+    public SkinnedMeshRenderer[] HumanMeshRenderer;
+
     public GameObject _TrackedHuman;
     public GameObject _FoundHuman;
     public GameObject humanDetectionArea;
@@ -49,11 +56,12 @@ public class HumanStateMachine : MonoBehaviour
 
     private void Start()
     {
+        LoadMaterials();
     }
 
     private void Update()
     {
-        Debug.Log("Stopped: "+ _HumanAgent.isStopped);
+        _HumanMaterial[0].SetFloat("DissolveValue", 1);
         if (_IsInfected&&humanDetectionArea.activeSelf)
         {
             humanDetectionArea.SetActive(false);
@@ -61,6 +69,18 @@ public class HumanStateMachine : MonoBehaviour
             _HumanAgent.speed = 3f*_HaltedSpeed;
         }
         currentState.UpdateStates();
+    }
+
+    private void LoadMaterials()
+    {
+        foreach(Material oldMaterial in _HumanMaterial)
+        {
+            Material materialClone = Instantiate<Material>(oldMaterial);
+            ClonedMaterials.Add(materialClone);
+        }
+        HumanMeshRenderer[0].material = ClonedMaterials[0];
+        HumanMeshRenderer[1].material = ClonedMaterials[1];
+        HumanMeshRenderer[2].material = ClonedMaterials[2];
     }
 
     public Vector3 RandomNavSphere(Vector3 origin, float dist)

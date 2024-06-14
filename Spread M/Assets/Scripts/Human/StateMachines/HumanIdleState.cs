@@ -29,21 +29,40 @@ public class HumanIdleState : HumanBaseState
             Ctx._TrackedHuman = null;
             Ctx._FoundHuman = null;
             Ctx._IsAfraid = false;
-            Ctx.HumanAnimator.ResetTrigger("Attacking");
+            Ctx.HumanAnimators[0].ResetTrigger("Attacking");
+            Ctx.HumanAnimators[1].ResetTrigger("Attacking");
             SwitchState(Factory.Walk());
         }
         else
         {
+            ChangeSkins();
             if (!Ctx._IsInfected&&!Ctx._IsCaught)
             {
                 Ctx._HumanAgent.isStopped = false;
                 Ctx._HumanAgent.speed = 2f * Ctx._HaltedSpeed;
                 SwitchState(Factory.Walk());
             }
-            Ctx.HumanAnimator.SetTrigger("Attacking");
+            Ctx.HumanAnimators[0].SetTrigger("Attacking");
+            Ctx.HumanAnimators[1].SetTrigger("Attacking");
         }
     }
     public override void InitializeSubState() 
     {
     }
+
+    private void ChangeSkins()
+    {
+        if (!Ctx._IsHuman)
+        {
+            float AnimProgress = Ctx.HumanAnimators[0].GetCurrentAnimatorStateInfo(0).normalizedTime;
+            float ExtraProgress = 1.2f;
+            if (Ctx.HumanAnimators[0].GetCurrentAnimatorStateInfo(0).IsName("HumanAttacked - H"))
+            {
+                Ctx.ClonedMaterials[0].SetFloat("_DissolveValue", AnimProgress * ExtraProgress);
+                Ctx.ClonedMaterials[1].SetFloat("_DissolveValue", 1 - (AnimProgress * ExtraProgress * 1.7f));
+                Ctx.ClonedMaterials[2].SetFloat("_DissolveValue", 1 - (AnimProgress * ExtraProgress * 1.7f));
+            }
+        }
+    }
+
 }

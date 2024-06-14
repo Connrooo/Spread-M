@@ -14,7 +14,8 @@ public class HumanInfectedRunState : HumanBaseState
     {
         Ctx._HumanAgent.isStopped = false;
         Ctx._HumanAgent.ResetPath();
-        Ctx.HumanAnimator.SetBool("Running", true);
+        Ctx.HumanAnimators[0].SetBool("Running", true);
+        Ctx.HumanAnimators[1].SetBool("Running", true);
     }
     public override void UpdateState() 
     {
@@ -80,9 +81,11 @@ public class HumanInfectedRunState : HumanBaseState
             Ctx.InfectedOnCooldown = true;
             var humanScript = Ctx._TrackedHuman.GetComponent<HumanStateMachine>();
             humanScript._IsHuman = false;
-            humanScript.HumanAnimator.SetTrigger("Attacked");
+            humanScript.HumanAnimators[0].SetTrigger("Attacked");
+            humanScript.HumanAnimators[1].SetTrigger("Attacked");
             Ctx._TrackedHuman = null;
-            Ctx.HumanAnimator.SetTrigger("Attacking");
+            Ctx.HumanAnimators[0].SetTrigger("Attacking");
+            Ctx.HumanAnimators[1].SetTrigger("Attacking");
         }
         else
         {

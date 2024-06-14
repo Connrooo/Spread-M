@@ -41,7 +41,8 @@ public class PlayerInteractState : PlayerBaseState
                 {
                     Ctx.cooldownSpeed = .01f;
                     Ctx.CharacterAnimator.SetTrigger("Attack");
-                    humanScript.HumanAnimator.SetTrigger("Attacked");
+                    humanScript.HumanAnimators[0].SetTrigger("Attacked");
+                    humanScript.HumanAnimators[1].SetTrigger("Attacked");
                     humanScript._IsHuman = false;
                     index++;
                     Ctx.CharacterRotation.transform.LookAt(interactable.transform.position);

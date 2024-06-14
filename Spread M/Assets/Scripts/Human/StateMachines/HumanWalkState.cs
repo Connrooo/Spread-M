@@ -13,7 +13,8 @@ public class HumanWalkState : HumanBaseState
     public override void EnterState() 
     {
         Ctx._HumanAgent.isStopped = false;
-        Ctx.HumanAnimator.SetBool("Running", false);
+        Ctx.HumanAnimators[0].SetBool("Running", false);
+        Ctx.HumanAnimators[1].SetBool("Running", false);
         Ctx._HumanAgent.speed = 3f * Ctx._HaltedSpeed;
     }
     public override void UpdateState() 

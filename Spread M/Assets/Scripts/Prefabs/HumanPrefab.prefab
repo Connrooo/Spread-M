@@ -484,7 +484,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HumanAgent: {fileID: 0}
-  HumanAnimator: {fileID: 7995097164949046835}
+  HumanAnimators:
+  - {fileID: 7995097164949046835}
+  - {fileID: 2636335816367484959}
+  _HumanMaterial:
+  - {fileID: 2100000, guid: 4c3f64a965055fb448d652e19471f54b, type: 2}
+  - {fileID: 2100000, guid: 8b6c7297ff3f5f744bb34b2ea8f3d0ff, type: 2}
+  - {fileID: 2100000, guid: 34bcaaa90d387f64bb622d9aa7047227, type: 2}
+  ClonedMaterials: []
+  HumanMeshRenderer:
+  - {fileID: 8724019115104110812}
+  - {fileID: 2663871757983972594}
+  - {fileID: 1586267949303229498}
   _TrackedHuman: {fileID: 0}
   _FoundHuman: {fileID: 0}
   humanDetectionArea: {fileID: 9133794706660735199}
@@ -1366,6 +1377,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 56.457962
       objectReference: {fileID: 0}
+    - target: {fileID: 5084333094060323710, guid: 4fc89402ece334d4899af8a2391ff626,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084333094060323710, guid: 4fc89402ece334d4899af8a2391ff626,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c3f64a965055fb448d652e19471f54b, type: 2}
+    - target: {fileID: 5084333094060323710, guid: 4fc89402ece334d4899af8a2391ff626,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c3f64a965055fb448d652e19471f54b, type: 2}
     - target: {fileID: 5330915318709922054, guid: 4fc89402ece334d4899af8a2391ff626,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1401,6 +1427,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f06794898cc67f546aeda1e17fa56ea0, type: 2}
+    - target: {fileID: 6104778604937956740, guid: 4fc89402ece334d4899af8a2391ff626,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6287080226507574380, guid: 4fc89402ece334d4899af8a2391ff626,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1452,6 +1483,12 @@ Transform:
 --- !u!95 &7995097164949046835 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 4fc89402ece334d4899af8a2391ff626,
+    type: 3}
+  m_PrefabInstance: {fileID: 4584346846591581090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8724019115104110812 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5084333094060323710, guid: 4fc89402ece334d4899af8a2391ff626,
     type: 3}
   m_PrefabInstance: {fileID: 4584346846591581090}
   m_PrefabAsset: {fileID: 0}
@@ -1518,8 +1555,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieModelRotated
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8dce36c3006d45a4e97e22506a376b53,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342364190119327213, guid: 8dce36c3006d45a4e97e22506a376b53,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b6c7297ff3f5f744bb34b2ea8f3d0ff, type: 2}
+    - target: {fileID: 6104778604937956740, guid: 8dce36c3006d45a4e97e22506a376b53,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707592122889299237, guid: 8dce36c3006d45a4e97e22506a376b53,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 34bcaaa90d387f64bb622d9aa7047227, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6104778604937956740, guid: 8dce36c3006d45a4e97e22506a376b53, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8dce36c3006d45a4e97e22506a376b53,
@@ -1531,6 +1589,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5482958134385352486}
   m_SourcePrefab: {fileID: 100100000, guid: 8dce36c3006d45a4e97e22506a376b53, type: 3}
+--- !u!137 &1586267949303229498 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8707592122889299237, guid: 8dce36c3006d45a4e97e22506a376b53,
+    type: 3}
+  m_PrefabInstance: {fileID: 7986037369583175967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &2663871757983972594 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5342364190119327213, guid: 8dce36c3006d45a4e97e22506a376b53,
+    type: 3}
+  m_PrefabInstance: {fileID: 7986037369583175967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7067682170483848270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8dce36c3006d45a4e97e22506a376b53,

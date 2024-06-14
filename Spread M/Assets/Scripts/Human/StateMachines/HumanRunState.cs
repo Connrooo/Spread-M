@@ -21,7 +21,8 @@ public class HumanRunState : HumanBaseState
         Ctx._IsWalking = false;
         expandingRange = 1f;
         Ctx._HumanAgent.speed = 10f * Ctx._HaltedSpeed;
-        Ctx.HumanAnimator.SetBool("Running", true);
+        Ctx.HumanAnimators[0].SetBool("Running", true);
+        Ctx.HumanAnimators[1].SetBool("Running", true);
     }
     public override void UpdateState() 
     {
