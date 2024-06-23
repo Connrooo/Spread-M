@@ -17,7 +17,7 @@ public class GameManagerStateMachine : MonoBehaviour
     public MenuManager menuManager;
     public SettingsMenu settingsMenu;
     public InputManager inputManager;
-    //public AudioManager audioManager;
+    public AudioManager audioManager;
     public bool _Paused; //checks if the game is paused
     public bool _PlayingGame; //checks if the game is being played or not (will be in menu if not being played)
     public bool _CanMove;
@@ -37,7 +37,7 @@ public class GameManagerStateMachine : MonoBehaviour
         DontDestroyOnLoad(menuManager);
         DontDestroyOnLoad(settingsMenu);
         DontDestroyOnLoad(inputManager);
-        //DontDestroyOnLoad(audioManager);
+        DontDestroyOnLoad(audioManager);
         SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         states = new GameManagerStateFactory(this);
         _Paused = true;

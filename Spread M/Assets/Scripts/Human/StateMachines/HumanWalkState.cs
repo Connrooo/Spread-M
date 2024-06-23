@@ -30,7 +30,6 @@ public class HumanWalkState : HumanBaseState
         if (!Ctx._IsHuman&&!Ctx._IsInfected)
         {
             SwitchState(Factory.Idle());
-            Debug.Log("Switched");
         }
         else
         {
