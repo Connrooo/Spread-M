@@ -15,7 +15,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 3ccb36e9cf037424e882b4b2de599a77
+    name: MasterVolume
+  - guid: d65135795ea3319428716ba02f632dab
+    name: MusicVolume
+  - guid: 2f22d26d391aec64091280e2235de0fb
+    name: SFXVolume
   m_AudioMixerGroupViews:
   - guids:
     - 697af2a24595a4648a38bd55187b9cd6
@@ -89,6 +95,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &2810642767338750474
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2c79a4e5dbf629744872bc01af6c41f5
+  m_EffectName: Receive
+  m_MixLevel: 104eff27ff6b34b43bab8ef8e58cf86e
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &7327786987544373135
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class SettingsMenu : MonoBehaviour
     void Start()
     {
         //ResolutionStart();
-        //PostProcessingStart();
+        PostProcessingStart();
         //LoadPlayerPrefs();
     }
 
@@ -85,9 +85,6 @@ public class SettingsMenu : MonoBehaviour
     {
         postProcessingVolume = GameObject.FindGameObjectWithTag("VolumeMain").GetComponent<Volume>();
         postProcessingVolume.profile.TryGet(out colorAdjustments);
-        postProcessingVolume.profile.TryGet(out vignette);
-        postProcessingVolume.profile.TryGet(out filmGrain);
-        postProcessingVolume.profile.TryGet(out liftGammaGain);
     }
     private void ResolutionStart()
     {
