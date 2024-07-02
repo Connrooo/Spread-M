@@ -59,6 +59,7 @@ public class MenuManager : MonoBehaviour
             {
                 P_PauseGame();
             }
+            Debug.Log("HI");
             PlayingGame();
             DefaultCheckers();
             playerStateMachine.IsMenuOpenClosePressed = false;
@@ -67,42 +68,28 @@ public class MenuManager : MonoBehaviour
 
     private void DefaultCheckers()
     {
-        if (GamepadCanvas.activeSelf) //if the player is in the gamepad rebinding canvas, go to the settings canvas
-        {
-            GamepadCanvas.SetActive(false);
-            SettingsCanvas.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(FS_Settings);
-        }
-        else if (KeyboardCanvas.activeSelf) //if the player is in the keyboard rebinding canvas, go to the settings canvas
-        {
-            KeyboardCanvas.SetActive(false);
-            SettingsCanvas.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(FS_Settings);
-        }
-        else if (CreditsCanvas.activeSelf) //if credits canvas is active, go to main menu
-        {
-            CreditsCanvas.SetActive(false);
-            MainMenuCanvas.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(FS_Menu);
-        }
     }
 
     private void PlayingGame()
     {
         if(gameManager._PlayingGame)
         {
-            if (SettingsCanvas.activeSelf) //if in game and in settings, go to pause menu
+            if (SettingsCanvas.activeSelf||GamepadCanvas.activeSelf||KeyboardCanvas.activeSelf) //if in game and in settings, go to pause menu
             {
                 SettingsCanvas.SetActive(false);
+                KeyboardCanvas.SetActive(false);
+                GamepadCanvas.SetActive(false);
                 PauseCanvas.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(FS_Pause);
             }
         }
         else
         {
-            if (SettingsCanvas.activeSelf)
+            if (SettingsCanvas.activeSelf || GamepadCanvas.activeSelf || KeyboardCanvas.activeSelf)
             {
                 SettingsCanvas.SetActive(false);
+                KeyboardCanvas.SetActive(false);
+                GamepadCanvas.SetActive(false);
                 MainMenuCanvas.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(FS_Menu);
             }
@@ -111,20 +98,12 @@ public class MenuManager : MonoBehaviour
 
     public void Settings()
     {
-        //if in game, hide the pause menu and pull up settings
-        //if in main menu, hide the menu and pull up settings
-        if (PauseCanvas.activeSelf)
-        {
-            PauseCanvas.SetActive(false);
-            SettingsCanvas.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(FS_Settings);
-        }
-        else if(MainMenuCanvas.activeSelf)
-        {
-            MainMenuCanvas.SetActive(false);
-            SettingsCanvas.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(FS_Settings);
-        }
+        PauseCanvas.SetActive(false);
+        GamepadCanvas.SetActive(false);
+        KeyboardCanvas.SetActive(false);
+        MainMenuCanvas.SetActive(false);
+        SettingsCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(FS_Settings);
     }
 
     public void GoToMenu()
@@ -174,6 +153,7 @@ public class MenuManager : MonoBehaviour
     public void S_Keyboard()
     {
         SettingsCanvas.SetActive(false);
+        GamepadCanvas.SetActive(false);
         KeyboardCanvas.SetActive(true);
         EventSystem.current.SetSelectedGameObject(FS_Keyboard);
     }
@@ -181,6 +161,7 @@ public class MenuManager : MonoBehaviour
     public void S_Gamepad() 
     {
         SettingsCanvas.SetActive(false);
+        KeyboardCanvas.SetActive(false);
         GamepadCanvas.SetActive(true);
         EventSystem.current.SetSelectedGameObject(FS_Gamepad);
     }
