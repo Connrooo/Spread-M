@@ -59,7 +59,6 @@ public class MenuManager : MonoBehaviour
             {
                 P_PauseGame();
             }
-            Debug.Log("HI");
             PlayingGame();
             DefaultCheckers();
             playerStateMachine.IsMenuOpenClosePressed = false;
@@ -124,6 +123,7 @@ public class MenuManager : MonoBehaviour
         if (PauseCanvas.activeSelf) //if in game and in pause menu, go to main menu
         {
             gameManager._PlayingGame = false;
+            GoToMenu();
         }
         PlayingGame();
         DefaultCheckers();

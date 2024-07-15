@@ -24,6 +24,16 @@ public class GameManagerStateMachine : MonoBehaviour
     public bool _InGame;
     public bool _InMenu;
 
+    public GameObject HumanPrefab;
+
+    public GameObject _DeletableObjectPrefab;
+    public GameObject _DeletableObjects;
+    public Vector3[] _possibleCoordinates;
+    public Vector3 PlayerStartPosition;
+    public Quaternion PlayerStartRotation;
+    public Quaternion CameraStartRotation;
+    public bool ResetRotation;
+
     [Header("Cinemachine")]
     public List<CinemachineVirtualCamera> _Cameras;
     public CinemachineVirtualCamera menuCamera;
@@ -52,11 +62,7 @@ public class GameManagerStateMachine : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         currentState = states.Menu();
         currentState.EnterState();
-        humans = GameObject.FindGameObjectsWithTag("Interact");
-        foreach (GameObject human in humans)
-        {
-            amountOfHumans++;
-        }
+        
     }
     private void Update()
     {

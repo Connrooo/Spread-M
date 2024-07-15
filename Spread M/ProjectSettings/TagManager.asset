@@ -9,6 +9,8 @@ TagManager:
   - CameraTrack
   - Interact
   - VolumeMain
+  - Text
+  - PossibleCoordinates
   layers:
   - Default
   - TransparentFX

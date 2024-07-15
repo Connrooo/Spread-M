@@ -35,6 +35,14 @@ public class CinemachinePOVExtension : CinemachineExtension
                 startingRotation.x += deltaInput.x * verticalSpeed * Time.deltaTime;
                 startingRotation.y += deltaInput.y * horizontalSpeed * Time.deltaTime;
                 startingRotation.y = Mathf.Clamp(startingRotation.y, -clampAngleDown, clampAngleUp);
+                if (gameManager.ResetRotation)
+                {
+                    gameManager.ResetRotation = false;
+                    deltaInput = new Vector2();
+                    startingRotation = new Vector3(0, 0, 0);
+                    //startingRotation = gameManager.CameraStartRotation.eulerAngles;
+                    //startingRotation.y = -startingRotation.y;
+                }
                 CameraTrack.transform.rotation = Quaternion.Euler(-startingRotation.y, startingRotation.x, CameraTrack.transform.rotation.eulerAngles.z);
             }
         }

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerInteractState : PlayerBaseState
 {
@@ -34,27 +36,24 @@ public class PlayerInteractState : PlayerBaseState
         foreach(GameObject interactable in Ctx._InteractablesInCone)
         {
             var mask = Ctx.layerMaskInteract.value;
-            if (!Physics.Linecast(Ctx._PlayerTrack.position, interactable.transform.position, mask) && Ctx.IsInteractPressed&&index==0)
+            if (interactable != null)
             {
-                var humanScript = interactable.GetComponent<HumanStateMachine>();
-                if (humanScript._IsHuman)
+                if (!Physics.Linecast(Ctx._PlayerTrack.position, interactable.transform.position, mask) && Ctx.IsInteractPressed && index == 0)
                 {
-                    Ctx.cooldownSpeed = .01f;
-                    Ctx.CharacterAnimator.SetTrigger("Attack");
-                    humanScript.HumanAnimators[0].SetTrigger("Attacked");
-                    humanScript.HumanAnimators[1].SetTrigger("Attacked");
-                    humanScript._IsHuman = false;
-                    index++;
-                    Ctx.CharacterRotation.transform.LookAt(interactable.transform.position);
-                    Ctx.CharacterRotation.transform.rotation = Quaternion.Euler(0, Ctx.CharacterRotation.transform.rotation.eulerAngles.y, 0);
+                    var humanScript = interactable.GetComponent<HumanStateMachine>();
+                    if (humanScript._IsHuman)
+                    {
+                        Ctx.cooldownSpeed = .01f;
+                        Ctx.CharacterAnimator.SetTrigger("Attack");
+                        humanScript.HumanAnimators[0].SetTrigger("Attacked");
+                        humanScript.HumanAnimators[1].SetTrigger("Attacked");
+                        humanScript._IsHuman = false;
+                        index++;
+                        Ctx.CharacterRotation.transform.LookAt(interactable.transform.position);
+                        Ctx.CharacterRotation.transform.rotation = Quaternion.Euler(0, Ctx.CharacterRotation.transform.rotation.eulerAngles.y, 0);
+                    }
                 }
             }
-            
         }
-        //foreach(GameObject interactable in toDelete)
-        //{
-        //    Ctx._InteractablesInCone.Remove(interactable);
-        //    Object.Destroy(interactable);
-        //}
     }
 }
