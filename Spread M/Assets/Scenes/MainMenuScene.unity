@@ -11657,6 +11657,7 @@ GameObject:
   - component: {fileID: 1891642075}
   - component: {fileID: 1891642074}
   - component: {fileID: 1891642076}
+  - component: {fileID: 1891642077}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -11678,7 +11679,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: b809b12bd560026439f1d859db4447f8, type: 2}
   sounds: []
-  walkSounds: []
+  walkSounds:
+  - name: walk
+    clip: {fileID: 8300000, guid: 07aca49ea1732f648a230ed7020caa08, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  groanSounds:
+  - name: groan
+    clip: {fileID: 8300000, guid: 6478e9347fdf9a0439243d147a8882c5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  infectSounds:
+  - name: skeletal scream
+    clip: {fileID: 8300000, guid: 4e932bc1e30326343a6d0c0d0c0817da, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  screamSounds:
+  - name: dooropen
+    clip: {fileID: 8300000, guid: 9dd9bc40b0ec1e14a91b52f676b88125, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  attackedSounds:
+  - name: 
+    clip: {fileID: 8300000, guid: f725642dae95c6248a958b0a5f758aa0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
   music:
   - name: Menu
     clip: {fileID: 8300000, guid: fa00f281e443de042a9bc0ac318648f6, type: 3}
@@ -11731,6 +11781,19 @@ MonoBehaviour:
   mainSlider: {fileID: 876734960}
   musicSlider: {fileID: 386370055}
   SFXSlider: {fileID: 1560514102}
+--- !u!114 &1891642077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891642073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138cdfec02194de4da626b54b447d01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singletonMixer: {fileID: 24100000, guid: b809b12bd560026439f1d859db4447f8, type: 2}
 --- !u!1 &1909760486
 GameObject:
   m_ObjectHideFlags: 0

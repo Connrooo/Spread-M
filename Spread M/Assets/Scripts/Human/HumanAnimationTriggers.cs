@@ -7,6 +7,7 @@ public class HumanAnimationTriggers : MonoBehaviour
     HumanStateMachine parent;
     Animator HumanAnimator;
     GameManagerStateMachine gameManager;
+    public bool firstInput;
 
     private void Awake()
     {
@@ -24,7 +25,10 @@ public class HumanAnimationTriggers : MonoBehaviour
     {
         parent._IsInfected = true;
         parent._HaltedSpeed = 1;
-        gameManager.amountOfHumans--;
+        if (firstInput)
+        {
+            gameManager.amountOfHumans--;
+        }
     }
     public void OffCoolDown()
     {
