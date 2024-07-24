@@ -54,6 +54,7 @@ public class HumanIdleState : HumanBaseState
     {
         if (!Ctx._IsHuman)
         {
+            GameObject.Destroy(Ctx.vibeObject);
             float AnimProgress = Ctx.HumanAnimators[0].GetCurrentAnimatorStateInfo(0).normalizedTime;
             float ExtraProgress = 1.2f;
             if (Ctx.HumanAnimators[0].GetCurrentAnimatorStateInfo(0).IsName("HumanAttacked - H"))

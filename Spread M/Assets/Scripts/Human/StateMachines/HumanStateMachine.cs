@@ -26,6 +26,9 @@ public class HumanStateMachine : MonoBehaviour
     public bool _IsWalking;
     public Vector3 _LastPosition;
 
+    public GameObject vibeObject;
+
+
     public float _HaltedSpeed = 1f;
 
     [Header("Human State")]
