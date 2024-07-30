@@ -11,6 +11,7 @@ TagManager:
   - VolumeMain
   - Text
   - PossibleCoordinates
+  - Human
   layers:
   - Default
   - TransparentFX

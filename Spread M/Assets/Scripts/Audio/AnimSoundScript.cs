@@ -22,7 +22,7 @@ public class AnimSoundScript : MonoBehaviour
         }
         audioManager = FindObjectOfType<AudioManager>();
         audioSource.outputAudioMixerGroup = MixerSingleton.Instance.singletonMixer.FindMatchingGroups("SFX")[0];
-        timeToNextNoise = Random.Range(7, 25);
+        timeToNextNoise = Random.Range(4, 15);
     }
 
     private void Update()

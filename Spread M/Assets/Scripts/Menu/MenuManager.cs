@@ -136,7 +136,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = false;
         gameManager._PlayingGame = true;
         gameManager._Paused = false;
-        //PlayerUI.SetActive(true);
+        PlayerUI.SetActive(true);
         MainMenuCanvas.SetActive(false);
     }
 
@@ -187,4 +187,10 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1f;
     }
+
+    public void Socials()
+    {
+        Application.OpenURL("https://linktr.ee/ConnorRMCG");
+    }
+
 }

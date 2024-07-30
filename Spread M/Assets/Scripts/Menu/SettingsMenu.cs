@@ -50,7 +50,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ResolutionStart();
+        ResolutionStart();
         PostProcessingStart();
         //LoadPlayerPrefs();
     }
@@ -90,6 +90,7 @@ public class SettingsMenu : MonoBehaviour
     {
         resolutions = Screen.resolutions;
         filteredResolutions = new List<Resolution>();
+        filteredResolutions.Reverse();
 
         resolutionDropdown.ClearOptions();
         currentRefreshRate = Screen.currentResolution.refreshRateRatio;
