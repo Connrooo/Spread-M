@@ -10,6 +10,7 @@ public class CinemachinePOVExtension : CinemachineExtension
     [SerializeField] private float clampAngleDown = 60f;
     [SerializeField] private GameManagerStateMachine gameManager;
     PlayerStateMachine playerStateMachine;
+    SettingsMenu settingsMenu;
     GameObject CameraTrack;
     Vector3 startingRotation;
 
@@ -17,6 +18,7 @@ public class CinemachinePOVExtension : CinemachineExtension
     {
         playerStateMachine = FindAnyObjectByType<PlayerStateMachine>();
         gameManager= FindAnyObjectByType<GameManagerStateMachine>();
+        settingsMenu = FindAnyObjectByType<SettingsMenu>();
         base.Awake();
         startingRotation = transform.localRotation.eulerAngles;
     }
@@ -32,8 +34,8 @@ public class CinemachinePOVExtension : CinemachineExtension
             if(stage == CinemachineCore.Stage.Aim)
             {
                 Vector2 deltaInput = new Vector2(playerStateMachine.cameraInputX, playerStateMachine.cameraInputY);
-                startingRotation.x += deltaInput.x * verticalSpeed * Time.deltaTime;
-                startingRotation.y += deltaInput.y * horizontalSpeed * Time.deltaTime;
+                startingRotation.x += deltaInput.x * verticalSpeed * Time.deltaTime * settingsMenu._SensitivityMultiplier;
+                startingRotation.y += deltaInput.y * horizontalSpeed * Time.deltaTime * settingsMenu._SensitivityMultiplier;
                 startingRotation.y = Mathf.Clamp(startingRotation.y, -clampAngleDown, clampAngleUp);
                 if (gameManager.ResetRotation)
                 {

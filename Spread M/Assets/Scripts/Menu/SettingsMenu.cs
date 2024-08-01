@@ -38,6 +38,9 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] Toggle filmGrainToggle;
     [SerializeField] Toggle subtitleToggle;
 
+
+    public float NumberOfHumans = 5;
+
     
 
     private void Awake()
@@ -55,19 +58,6 @@ public class SettingsMenu : MonoBehaviour
         //LoadPlayerPrefs();
     }
 
-    private void LoadPlayerPrefs()
-    {
-        Screen.fullScreen = PlayerPrefs.GetInt("FullscreenValue")!=1;
-        _SensitivityMultiplier = PlayerPrefs.GetFloat("SensitivityValue", 1f);
-        colorAdjustments.postExposure.value = PlayerPrefs.GetFloat("BrightnessValue", 0f);
-        colorAdjustments.contrast.value = PlayerPrefs.GetFloat("ContrastValue", 0f);
-        liftGammaGain.gamma.value = new Vector4(PlayerPrefs.GetFloat("GammaValue", 1f), PlayerPrefs.GetFloat("GammaValue", 1f), PlayerPrefs.GetFloat("GammaValue", 1f), PlayerPrefs.GetFloat("GammaValue", 1f));
-        if (PlayerPrefs.HasKey("VignetteActive")) { vignette.active = PlayerPrefs.GetInt("VignetteActive") != 0; }
-        else { vignette.active = true; }
-        if (PlayerPrefs.HasKey("FilmGrainActive")) { filmGrain.active = PlayerPrefs.GetInt("FilmGrainActive") != 0;}
-        else { filmGrain.active = true;}
-        loadToggleValues();
-    }
 
     private void loadToggleValues()
     {
@@ -158,4 +148,11 @@ public class SettingsMenu : MonoBehaviour
         filmGrain.active = value;
         PlayerPrefs.SetInt("FilmGrainActive", (filmGrain.active ? 1 : 0));
     }
+
+    public void HumanAmount(float value)
+    {
+        NumberOfHumans = value;
+        PlayerPrefs.SetFloat("NumberOfHumans", NumberOfHumans);
+    }
+
 }

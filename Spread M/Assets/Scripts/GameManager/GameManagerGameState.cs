@@ -21,7 +21,7 @@ public class GameManagerGameState : GameManagerBaseState
         Ctx.gameplayCamera.Priority = 11;
         Ctx._DeletableObjects = Object.Instantiate(Ctx._DeletableObjectPrefab, new Vector3(0, 0, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
         SetPlayer();
-        SummonHumans(5);
+        SummonHumans((int)Ctx.settingsMenu.NumberOfHumans);
     }
     public override void UpdateState()
     {
