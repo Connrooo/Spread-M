@@ -1894,6 +1894,7 @@ MonoBehaviour:
   filmGrainToggle: {fileID: 0}
   subtitleToggle: {fileID: 0}
   NumberOfHumans: 5
+  humanText: {fileID: 0}
 --- !u!114 &279154821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,7 +3005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Amount of Humans
+  m_text: 'Amount of Humans: 12'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a71a0fe58162f0545bcf9bf4fd04fe97, type: 2}
   m_sharedMaterial: {fileID: 7187387820913076726, guid: a71a0fe58162f0545bcf9bf4fd04fe97,
@@ -5524,7 +5525,7 @@ RectTransform:
   m_GameObject: {fileID: 876734958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1150920690}
@@ -5535,7 +5536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1305, y: 365}
+  m_AnchoredPosition: {x: 1313, y: 365}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876734960
@@ -8069,6 +8070,7 @@ MonoBehaviour:
   filmGrainToggle: {fileID: 0}
   subtitleToggle: {fileID: 0}
   NumberOfHumans: 5
+  humanText: {fileID: 0}
 --- !u!4 &1134754222
 Transform:
   m_ObjectHideFlags: 0
@@ -13027,9 +13029,54 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     mixerGroup: {fileID: 0}
   infectSounds:
-  - name: skeletal scream
-    clip: {fileID: 8300000, guid: 4e932bc1e30326343a6d0c0d0c0817da, type: 3}
-    volume: 1
+  - name: Infect_1
+    clip: {fileID: 8300000, guid: 8f90d5d83f5240c48896da9921f11f44, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Infect_2
+    clip: {fileID: 8300000, guid: 698ba30506325f946bf1cbac068475ca, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Infect_3
+    clip: {fileID: 8300000, guid: 55bc00d2909a1c04da1aec9721f4b5b9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Infect_4
+    clip: {fileID: 8300000, guid: 3d9a99a6614cd1547a2721c06c4cd9b9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Infect_5
+    clip: {fileID: 8300000, guid: 991de27daecaf664dafaac05b8e9ca69, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Infect_6
+    clip: {fileID: 8300000, guid: 82ef1d582d89e54488d7e15c2eeb2c97, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -13037,8 +13084,8 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     mixerGroup: {fileID: 0}
   screamSounds:
-  - name: dooropen
-    clip: {fileID: 8300000, guid: 9dd9bc40b0ec1e14a91b52f676b88125, type: 3}
+  - name: Scream_1
+    clip: {fileID: 8300000, guid: 56d4f3487f5a6fe45a8f0e85f773e2de, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -13047,8 +13094,8 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     mixerGroup: {fileID: 0}
   attackedSounds:
-  - name: 
-    clip: {fileID: 8300000, guid: f725642dae95c6248a958b0a5f758aa0, type: 3}
+  - name: attacked
+    clip: {fileID: 8300000, guid: 7bca1cf56098459478c6e6bebb52cfb0, type: 3}
     volume: 1
     pitch: 1
     loop: 0

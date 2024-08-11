@@ -40,6 +40,7 @@ public class SettingsMenu : MonoBehaviour
 
 
     public float NumberOfHumans = 5;
+    [SerializeField] TMP_Text humanText;
 
     
 
@@ -153,6 +154,7 @@ public class SettingsMenu : MonoBehaviour
     {
         NumberOfHumans = value;
         PlayerPrefs.SetFloat("NumberOfHumans", NumberOfHumans);
+        humanText.text = "Amount of Humans: " + NumberOfHumans;
     }
 
 }
