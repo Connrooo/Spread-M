@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditorInternal.ReorderableList;
 using Random = UnityEngine.Random;
 
 public class HumanStateMachine : MonoBehaviour

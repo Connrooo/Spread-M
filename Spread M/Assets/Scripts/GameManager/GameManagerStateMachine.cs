@@ -79,5 +79,6 @@ public class GameManagerStateMachine : MonoBehaviour
         {
             Debug.Log("Game over");
         }
+        Debug.Log(settingsMenu.NumberOfHumans);
     }
 }

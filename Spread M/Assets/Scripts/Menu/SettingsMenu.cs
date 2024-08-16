@@ -24,19 +24,13 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Volume postProcessingVolume;
     [Header("Post Processing Effects")]
     private ColorAdjustments colorAdjustments;
-    private Vignette vignette;
-    private FilmGrain filmGrain;
     private LiftGammaGain liftGammaGain;
 
     [Header("PlayerPref Buttons,Sliders,Etc")]
     [SerializeField] Toggle fullscreenToggle;
     [SerializeField] Slider sensitivitySlider;
     [SerializeField] Slider brightnessSlider;
-    [SerializeField] Slider contrastSlider;
-    [SerializeField] Slider gammaSlider;
-    [SerializeField] Toggle vignetteToggle;
-    [SerializeField] Toggle filmGrainToggle;
-    [SerializeField] Toggle subtitleToggle;
+    [SerializeField] Slider humanSlider;
 
 
     public float NumberOfHumans = 5;
@@ -56,20 +50,27 @@ public class SettingsMenu : MonoBehaviour
     {
         ResolutionStart();
         PostProcessingStart();
-        //LoadPlayerPrefs();
+        LoadPlayerPrefs();
+        LoadToggleValues();
     }
 
+    private void LoadPlayerPrefs()
+    {
+        Screen.fullScreen = PlayerPrefs.GetInt("FullscreenValue") != 1;
+        Debug.Log(PlayerPrefs.GetInt("FullscreenValue") != 0);
+        _SensitivityMultiplier = PlayerPrefs.GetFloat("SensitivityValue", 1f);
+        colorAdjustments.postExposure.value = PlayerPrefs.GetFloat("BrightnessValue", 0f);
+        NumberOfHumans = PlayerPrefs.GetFloat("NumberOfHumans", 5f);
+        
+    }
 
-    private void loadToggleValues()
+    private void LoadToggleValues()
     {
         fullscreenToggle.isOn = Screen.fullScreen;
         sensitivitySlider.value = _SensitivityMultiplier;
-        subtitleToggle.isOn = PlayerPrefs.GetInt("SubtitleToggle") != 0;
         brightnessSlider.value = colorAdjustments.postExposure.value;
-        contrastSlider.value = colorAdjustments.contrast.value;
-        gammaSlider.value = PlayerPrefs.GetFloat("GammaValue", 1f);
-        vignetteToggle.isOn = vignette.active;
-        filmGrainToggle.isOn = filmGrain.active;
+        humanSlider.value = NumberOfHumans;
+        humanText.text = "Amount of Humans: " + NumberOfHumans;
     }
 
     private void PostProcessingStart()
@@ -82,7 +83,7 @@ public class SettingsMenu : MonoBehaviour
         resolutions = Screen.resolutions;
         filteredResolutions = new List<Resolution>();
         filteredResolutions.Reverse();
-
+        Debug.Log(resolutionDropdown);
         resolutionDropdown.ClearOptions();
         currentRefreshRate = Screen.currentResolution.refreshRateRatio;
 
@@ -107,6 +108,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResIndex;
         resolutionDropdown.RefreshShownValue();
+        Debug.Log(resolutionDropdown);
     }
     public void SetResolution()
     {
@@ -127,27 +129,6 @@ public class SettingsMenu : MonoBehaviour
     {
         colorAdjustments.postExposure.value= value;
         PlayerPrefs.SetFloat("BrightnessValue", colorAdjustments.postExposure.value);
-    }
-
-    public void AdjustContrast(float value)
-    {
-        colorAdjustments.contrast.value = value*10;
-        PlayerPrefs.SetFloat("ContrastValue", colorAdjustments.contrast.value);
-    }
-    public void AdjustGamma(float value)
-    {
-        liftGammaGain.gamma.value = new Vector4(value, value, value, value);
-        PlayerPrefs.SetFloat("GammaValue", value);
-    }
-    public void ToggleVignette(bool value)
-    {
-        vignette.active = value;
-        PlayerPrefs.SetInt("VignetteActive", (vignette.active ? 1 : 0));
-    }
-    public void ToggleFilmGrain(bool value)
-    {
-        filmGrain.active = value;
-        PlayerPrefs.SetInt("FilmGrainActive", (filmGrain.active ? 1 : 0));
     }
 
     public void HumanAmount(float value)
