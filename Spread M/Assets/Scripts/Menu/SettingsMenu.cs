@@ -14,12 +14,11 @@ public class SettingsMenu : MonoBehaviour
     PlayerStateMachine playerStateMachine;
     MenuManager menuManager;
     [Header("Resolution")]
-    [SerializeField] TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
     List<Resolution> filteredResolutions;
     RefreshRate currentRefreshRate;
     int currentResIndex = 0;
-    List<ResItem> finalResolutions;
+    List<ResItem> finalResolutions = new();
     [SerializeField] TMP_Text resText;
     [Header("Sensitivity")]
     public float _SensitivityMultiplier = 1f;
@@ -50,7 +49,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResolutionStart2();
+        ResolutionStart();
         PostProcessingStart();
         LoadPlayerPrefs();
         LoadToggleValues();
@@ -63,7 +62,7 @@ public class SettingsMenu : MonoBehaviour
         _SensitivityMultiplier = PlayerPrefs.GetFloat("SensitivityValue", 1f);
         colorAdjustments.postExposure.value = PlayerPrefs.GetFloat("BrightnessValue", 0f);
         NumberOfHumans = PlayerPrefs.GetFloat("NumberOfHumans", 5f);
-        
+        Screen.SetResolution(PlayerPrefs.GetInt("HorResValue", Screen.currentResolution.width), PlayerPrefs.GetInt("VertResValue", Screen.currentResolution.height), Screen.fullScreen);
     }
 
     private void LoadToggleValues()
@@ -73,6 +72,7 @@ public class SettingsMenu : MonoBehaviour
         brightnessSlider.value = colorAdjustments.postExposure.value;
         humanSlider.value = NumberOfHumans;
         humanText.text = "Amount of Humans: " + NumberOfHumans;
+        resText.text = resText.text = finalResolutions[currentResIndex].horizontal + "x" + finalResolutions[currentResIndex].vertical;
     }
 
     private void PostProcessingStart()
@@ -81,37 +81,6 @@ public class SettingsMenu : MonoBehaviour
         postProcessingVolume.profile.TryGet(out colorAdjustments);
     }
     private void ResolutionStart()
-    {
-        resolutions = Screen.resolutions;
-        filteredResolutions = new List<Resolution>();
-        Debug.Log(resolutionDropdown);
-        resolutionDropdown.ClearOptions();
-        currentRefreshRate = Screen.currentResolution.refreshRateRatio;
-
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            if (resolutions[i].refreshRateRatio.value == currentRefreshRate.value)
-            {
-                filteredResolutions.Add(resolutions[i]);
-            }
-        }
-
-        List<string> options = new List<string>();
-        for (int i = 0; i < filteredResolutions.Count; i++)
-        {
-            string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height;
-            options.Add(resolutionOption);
-            if (i == filteredResolutions.Count - 1)
-            {
-                currentResIndex = i;
-            }
-        }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResIndex;
-        resolutionDropdown.RefreshShownValue();
-        Debug.Log(resolutionDropdown);
-    }
-    private void ResolutionStart2()
     {
         resolutions = Screen.resolutions;
         filteredResolutions = new List<Resolution>();
@@ -137,27 +106,40 @@ public class SettingsMenu : MonoBehaviour
                 currentResIndex = i;
             }
         }
-        resText.text = finalResolutions[currentResIndex].horizontal + "x" + finalResolutions[currentResIndex].vertical;
         Screen.SetResolution(finalResolutions[currentResIndex].horizontal, finalResolutions[currentResIndex].vertical, Screen.fullScreen);
     }
     public void MinusResolution()
     {
         currentResIndex--;
-        Resolution resolution = new();
-        resolution.width = finalResolutions[currentResIndex].horizontal;
-        resolution.height = finalResolutions[currentResIndex].vertical;
-        resText.text = finalResolutions[currentResIndex].horizontal + "x" + finalResolutions[currentResIndex].vertical;
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        if (currentResIndex < 0)
+        {
+            currentResIndex++;
+            return;
+        }
+        ResolutionSetter();
     }
     public void PlusResolution()
     {
-        currentResIndex--;
+        currentResIndex++;
+        if (currentResIndex > finalResolutions.Count - 1)
+        {
+            currentResIndex--;
+            return;
+        }
+        ResolutionSetter();
+    }
+
+    private void ResolutionSetter()
+    {
         Resolution resolution = new();
         resolution.width = finalResolutions[currentResIndex].horizontal;
         resolution.height = finalResolutions[currentResIndex].vertical;
         resText.text = finalResolutions[currentResIndex].horizontal + "x" + finalResolutions[currentResIndex].vertical;
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("HorResValue", resolution.width);
+        PlayerPrefs.SetInt("VertResValue", resolution.height);
     }
+
     public void SetFullscreen(bool value)
     {
         Screen.fullScreen = value;
