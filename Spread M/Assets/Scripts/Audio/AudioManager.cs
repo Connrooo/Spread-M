@@ -170,12 +170,13 @@ public class AudioManager : MonoBehaviour
     }
     private void HandleMusic()
     {
+        Debug.Log("Paused: " + gameManager._Paused);
         if (gameManager._Paused)
         {
             if (music[1].audioSource.volume != 0)
             {
-                music[1].audioSource.volume -= Time.deltaTime/2;
-                music[0].audioSource.volume += Time.deltaTime/2;
+                music[1].audioSource.volume -= Time.fixedDeltaTime/2;
+                music[0].audioSource.volume += Time.fixedDeltaTime/2;
             }
             else
             {

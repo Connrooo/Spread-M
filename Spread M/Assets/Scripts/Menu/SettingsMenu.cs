@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using static UnityEngine.Rendering.DebugUI;
+using JetBrains.Annotations;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -18,13 +19,14 @@ public class SettingsMenu : MonoBehaviour
     List<Resolution> filteredResolutions;
     RefreshRate currentRefreshRate;
     int currentResIndex = 0;
+    List<ResItem> finalResolutions;
+    [SerializeField] TMP_Text resText;
     [Header("Sensitivity")]
     public float _SensitivityMultiplier = 1f;
     [Header("Post-Processing")]
     [SerializeField] private Volume postProcessingVolume;
     [Header("Post Processing Effects")]
     private ColorAdjustments colorAdjustments;
-    private LiftGammaGain liftGammaGain;
 
     [Header("PlayerPref Buttons,Sliders,Etc")]
     [SerializeField] Toggle fullscreenToggle;
@@ -48,7 +50,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResolutionStart();
+        ResolutionStart2();
         PostProcessingStart();
         LoadPlayerPrefs();
         LoadToggleValues();
@@ -82,7 +84,6 @@ public class SettingsMenu : MonoBehaviour
     {
         resolutions = Screen.resolutions;
         filteredResolutions = new List<Resolution>();
-        filteredResolutions.Reverse();
         Debug.Log(resolutionDropdown);
         resolutionDropdown.ClearOptions();
         currentRefreshRate = Screen.currentResolution.refreshRateRatio;
@@ -110,9 +111,51 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
         Debug.Log(resolutionDropdown);
     }
-    public void SetResolution()
+    private void ResolutionStart2()
     {
-        Resolution resolution = filteredResolutions[resolutionDropdown.value];
+        resolutions = Screen.resolutions;
+        filteredResolutions = new List<Resolution>();
+        currentRefreshRate = Screen.currentResolution.refreshRateRatio;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            if (resolutions[i].refreshRateRatio.value == currentRefreshRate.value)
+            {
+                filteredResolutions.Add(resolutions[i]);
+            }
+        }
+        for (int i = 0; i < filteredResolutions.Count; i++)
+        {
+            int resWidth = filteredResolutions[i].width;
+            int resHeight = filteredResolutions[i].height;
+            ResItem newResolution = new();
+            newResolution.horizontal = resWidth;
+            newResolution.vertical = resHeight;
+            finalResolutions.Add(newResolution);
+            if (i == filteredResolutions.Count - 1)
+            {
+                currentResIndex = i;
+            }
+        }
+        resText.text = finalResolutions[currentResIndex].horizontal + "x" + finalResolutions[currentResIndex].vertical;
+        Screen.SetResolution(finalResolutions[currentResIndex].horizontal, finalResolutions[currentResIndex].vertical, Screen.fullScreen);
+    }
+    public void MinusResolution()
+    {
+        currentResIndex--;
+        Resolution resolution = new();
+        resolution.width = finalResolutions[currentResIndex].horizontal;
+        resolution.height = finalResolutions[currentResIndex].vertical;
+        resText.text = finalResolutions[currentResIndex].horizontal + "x" + finalResolutions[currentResIndex].vertical;
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+    public void PlusResolution()
+    {
+        currentResIndex--;
+        Resolution resolution = new();
+        resolution.width = finalResolutions[currentResIndex].horizontal;
+        resolution.height = finalResolutions[currentResIndex].vertical;
+        resText.text = finalResolutions[currentResIndex].horizontal + "x" + finalResolutions[currentResIndex].vertical;
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
     public void SetFullscreen(bool value)
@@ -138,4 +181,10 @@ public class SettingsMenu : MonoBehaviour
         humanText.text = "Amount of Humans: " + NumberOfHumans;
     }
 
+}
+
+
+public class ResItem
+{
+    public int horizontal, vertical;
 }
