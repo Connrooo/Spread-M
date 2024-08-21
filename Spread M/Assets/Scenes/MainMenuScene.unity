@@ -12312,6 +12312,51 @@ MonoBehaviour:
     direction: 0
     audioSource: {fileID: 0}
     mixerGroup: {fileID: 0}
+  - name: Scream_6
+    clip: {fileID: 8300000, guid: ded23747bf197ef4bbb4a6cd9c97f9be, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Scream_7
+    clip: {fileID: 8300000, guid: 3de9b7626a2b2ba4c8cace785bd3f431, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Scream_8
+    clip: {fileID: 8300000, guid: 887b043efd29b04449c647065530be26, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Scream_9
+    clip: {fileID: 8300000, guid: 0f30fa69f4d094b46bb41b9b7e03eefc, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Scream_10
+    clip: {fileID: 8300000, guid: d9c53a3f762b16d4e84aa4445e61fef8, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
   attackedSounds:
   - name: attacked_1
     clip: {fileID: 8300000, guid: 91689d100a900c940b46479e06fd0282, type: 3}
@@ -12378,6 +12423,15 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
   - name: attacked_8
     clip: {fileID: 8300000, guid: 0c48a3340d6b6294795cb193c256522f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    direction: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: attacked_9
+    clip: {fileID: 8300000, guid: bf32281a772fe43428c638caa4b196f6, type: 3}
     volume: 1
     pitch: 1
     loop: 0
